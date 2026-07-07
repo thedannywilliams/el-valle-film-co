@@ -1603,6 +1603,103 @@
     .hero-meta { flex-direction: column; gap: 14px; }
     .hero-meta-right { text-align: left; }
   }
+
+  /* ========= MOBILE: CENTER EVERYTHING ========= */
+  @media (max-width: 900px) {
+    /* Section heads, body copy, taglines */
+    .section-head,
+    .section-title,
+    .section-num,
+    .about-body,
+    .lead,
+    .about-body p,
+    .hero-tagline,
+    .hero-meta,
+    .hero-meta-right,
+    .name-story,
+    .name-story-label,
+    .name-story p,
+    .name-manifesto,
+    .name-manifesto-es,
+    .pillars,
+    .pillar,
+    .pillar-num,
+    .pillar h4,
+    .pillar p,
+    .team-grid,
+    .member,
+    .member-role,
+    .member-name,
+    .member-bio,
+    .member-credits,
+    .credit-block,
+    .credit-label,
+    .credit-list li,
+    .contact-page-grid,
+    .contact-form-col,
+    .contact-statement,
+    .contact-field,
+    .contact-field-label,
+    .contact-rep-col,
+    .contact-rep-card,
+    .contact-label,
+    .contact-value,
+    .contact-value-list,
+    .bts-caption,
+    .film-title,
+    .film-credits {
+      text-align: center;
+    }
+
+    /* Layout containers that need horizontal centering */
+    .section-num,
+    .hero-cta,
+    .founder-portrait-col,
+    .contact-form,
+    .contact-form-hp,
+    .film-credit-row,
+    .credit-list li,
+    .credit-list-inline,
+    .bts-caption {
+      justify-content: center;
+      justify-items: center;
+    }
+
+    /* Block-level containers that should center */
+    .founder-portrait-col,
+    .founder-portrait,
+    .bts-figure,
+    .bts-image-wrap,
+    .contact-form,
+    .contact-form-success {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Remove left border/padding on quote-style asides so text truly centers */
+    .name-story {
+      padding-left: 0;
+      border-left: none;
+    }
+
+    /* Credit list dashes were left-anchored — remove for center alignment */
+    .credit-list li {
+      padding-left: 0;
+    }
+    .credit-list li::before {
+      display: none;
+    }
+
+    /* Hero CTA button — center it in its slot */
+    .hero-cta {
+      justify-self: center;
+    }
+
+    /* Contact form field grid — center the label/value pair */
+    .contact-field {
+      align-items: center;
+    }
+  }
 </style>
 </head>
 <body>
