@@ -1162,46 +1162,160 @@
     .tooley-mark { width: 180px; }
   }
 
-  /* ========= OUTRO (filmmaker sign-off) ========= */
-  .outro {
-    padding: 100px 40px 60px;
-    text-align: center;
-    position: relative;
+  /* ========= INLINE CONTACT (form + rep aside) ========= */
+  .contact-page-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 80px;
+    align-items: start;
+    max-width: 1180px;
   }
 
-  .outro-figure {
-    display: inline-block;
-    width: clamp(220px, 28vw, 380px);
-    height: auto;
-    opacity: 0.92;
-    transition: opacity 0.6s ease;
+  .contact-form-col .contact-statement {
+    margin-bottom: 48px;
+    max-width: 580px;
   }
 
-  .outro:hover .outro-figure {
-    opacity: 1;
+  .contact-form {
+    display: grid;
+    gap: 32px;
+    max-width: 580px;
   }
 
-  .outro-caption {
-    margin-top: 28px;
+  .contact-field {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-field-label {
     font-family: var(--mono);
-    font-size: 9.5px;
-    letter-spacing: 0.36em;
+    font-size: 10px;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--ink-muted);
+    margin-bottom: 12px;
   }
 
-  .outro-caption .es {
-    color: var(--red);
-    opacity: 0.85;
+  .contact-form input[type=text],
+  .contact-form input[type=email],
+  .contact-form textarea {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 300;
+    color: var(--ink);
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--line-strong);
+    padding: 6px 0 12px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 0;
+  }
+
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder {
+    color: var(--ink-muted);
+    opacity: 0.55;
     font-style: italic;
-    margin-left: 14px;
-    letter-spacing: 0.32em;
   }
 
-  @media (max-width: 600px) {
-    .outro { padding: 64px 20px 40px; }
-    .outro-figure { width: clamp(180px, 60vw, 280px); }
-    .outro-caption { font-size: 8.5px; letter-spacing: 0.28em; }
+  .contact-form input:focus,
+  .contact-form textarea:focus {
+    border-bottom-color: var(--red);
+  }
+
+  .contact-form textarea {
+    min-height: 140px;
+    resize: vertical;
+    line-height: 1.5;
+  }
+
+  .contact-form .btn-primary {
+    margin-top: 12px;
+    justify-self: start;
+  }
+
+  .contact-form-hp {
+    position: absolute;
+    left: -9999px;
+  }
+
+  .contact-form-success {
+    padding: 44px 0;
+    border-top: 1px solid var(--line-strong);
+    border-bottom: 1px solid var(--line-strong);
+    max-width: 580px;
+  }
+
+  .contact-form-success h3 {
+    font-family: var(--display);
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: -0.005em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    color: var(--red);
+  }
+
+  .contact-form-success p {
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+  }
+
+  .contact-form-success-es {
+    font-size: 16px;
+    opacity: 0.85;
+  }
+
+  .contact-rep-col {
+    display: grid;
+    gap: 36px;
+    padding-top: 4px;
+    position: sticky;
+    top: 110px;
+  }
+
+  .contact-rep-card {
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .contact-rep-card:last-child {
+    border-bottom: none;
+  }
+
+  .contact-value-list {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.55;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+  }
+
+  .contact-value-list em.es {
+    display: inline-block;
+  }
+
+  @media (max-width: 900px) {
+    .contact-page-grid {
+      grid-template-columns: 1fr;
+      gap: 56px;
+    }
+    .contact-rep-col { position: static; }
+    .contact-form .btn-primary {
+      justify-self: stretch;
+      width: 100%;
+      justify-content: center;
+    }
   }
 
   /* ========= POWERED BY (footer signature) ========= */
@@ -1495,7 +1609,7 @@
     <li><a href="#about">About</a></li>
     <li><a href="#films">Films</a></li>
     <li><a href="#team">Team</a></li>
-    <li><a href="contact.html">Contact</a></li>
+    <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
@@ -1674,11 +1788,72 @@
   </div>
 </section>
 
-<section class="outro reveal" aria-label="El Valle Film Co. — established 2019">
-  <img src="filmmaker.png" alt="El Valle Film Co. — Established 2019" class="outro-figure" />
-  <div class="outro-caption">
-    Bridging us, one frame at a time.
-    <span class="es">· Un fotograma a la vez.</span>
+<section id="contact">
+  <div class="section-head reveal">
+    <div class="section-num"><span class="n">03</span> Contact <span class="es-pair">· Contacto</span></div>
+    <h2 class="section-title">Let's put one <em>in the can.</em></h2>
+  </div>
+
+  <div class="contact-page-grid reveal">
+    <div class="contact-form-col">
+      <p class="contact-statement">
+        We partner with filmmakers, writers, and financiers who care as much about craft as commerce. If that's you, drop us a line.
+      </p>
+
+      <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" class="contact-form" id="contact-form">
+        <input type="hidden" name="form-name" value="contact">
+        <p class="contact-form-hp">
+          <label>Don't fill this out if you're human: <input name="bot-field"></label>
+        </p>
+
+        <div class="contact-field">
+          <label for="contact-name" class="contact-field-label">Name <span class="es-pair">· Nombre</span></label>
+          <input type="text" id="contact-name" name="name" required autocomplete="name">
+        </div>
+
+        <div class="contact-field">
+          <label for="contact-email" class="contact-field-label">Email</label>
+          <input type="email" id="contact-email" name="email" required autocomplete="email">
+        </div>
+
+        <div class="contact-field">
+          <label for="contact-role" class="contact-field-label">You are a <span class="es-pair">· Eres</span></label>
+          <input type="text" id="contact-role" name="role" placeholder="Filmmaker, writer, financier...">
+        </div>
+
+        <div class="contact-field">
+          <label for="contact-message" class="contact-field-label">Message <span class="es-pair">· Mensaje</span></label>
+          <textarea id="contact-message" name="message" rows="5" required placeholder="Tell us about the project — or just say hi."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Send Message <span class="arrow">→</span></button>
+      </form>
+
+      <div class="contact-form-success" id="contact-success" hidden>
+        <h3>Message received.</h3>
+        <p>Thank you for reaching out. We'll be in touch soon.</p>
+        <p class="contact-form-success-es"><em class="es">Mensaje recibido. Estaremos en contacto.</em></p>
+      </div>
+    </div>
+
+    <aside class="contact-rep-col">
+      <div class="contact-rep-card">
+        <div class="contact-label">Representation <span class="es-pair">· Representación</span></div>
+        <div class="contact-value">
+          Zero Gravity Management<br>
+          <span class="contact-sub">Tamer Ahsan</span>
+        </div>
+      </div>
+
+      <div class="contact-rep-card">
+        <div class="contact-label">Based <span class="es-pair">· Sede</span></div>
+        <div class="contact-value-list">
+          Los Angeles<br>
+          Atlanta<br>
+          <em class="es">desde Samaná</em>
+        </div>
+      </div>
+    </aside>
   </div>
 </section>
 
@@ -1718,6 +1893,29 @@
       setTimeout(() => el.classList.add('visible'), 120 + i * 180);
     });
   });
+
+  // Netlify form: AJAX submission for inline confirmation
+  const contactForm = document.getElementById('contact-form');
+  if (contactForm) {
+    const success = document.getElementById('contact-success');
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = new FormData(contactForm);
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString()
+      })
+      .then(() => {
+        contactForm.hidden = true;
+        success.hidden = false;
+        success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      })
+      .catch(() => {
+        alert("Something went wrong. Please try again or email us directly.");
+      });
+    });
+  }
 </script>
 
 </body>
