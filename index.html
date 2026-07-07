@@ -143,16 +143,18 @@
 
   .nav-logo {
     height: 80px;
-    width: auto;
+    aspect-ratio: 1 / 1;
     display: block;
-    /* Black V on transparent → pure white via invert (no sepia tint) */
-    filter: invert(1);
-    transition: filter 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    /* Mask + background-color — exact brand tokens, no filter approximation */
+    background-color: var(--ink);
+    -webkit-mask: url("nav-mark.png") center/contain no-repeat;
+            mask: url("nav-mark.png") center/contain no-repeat;
+    transition: background-color 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  /* Light up in brand red on hover */
+  /* Light up in exact brand red on hover */
   .nav-mark:hover .nav-logo {
-    filter: invert(35%) sepia(70%) saturate(3800%) hue-rotate(354deg) brightness(96%) contrast(96%);
+    background-color: var(--red);
   }
 
   .nav-links {
@@ -280,21 +282,24 @@
 
   .hero-logo {
     width: clamp(340px, 48vw, 640px);
-    height: auto;
+    aspect-ratio: 1600 / 468;
     max-width: 100%;
     display: block;
-    /* Flip black wordmark to cream + soft drop-shadow so it pops off the photo */
-    filter: invert(1) brightness(0.94) sepia(0.18) saturate(0.5)
-            drop-shadow(0 4px 24px rgba(0, 0, 0, 0.55))
+    /* Mask + background-color — cream at rest, exact brand red on hover */
+    background-color: var(--ink);
+    -webkit-mask: url("el-valle-wordmark.png") center/contain no-repeat;
+            mask: url("el-valle-wordmark.png") center/contain no-repeat;
+    filter: drop-shadow(0 4px 24px rgba(0, 0, 0, 0.55))
             drop-shadow(0 1px 0 rgba(0, 0, 0, 0.6));
     animation: logoReveal 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
-    transition: filter 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: background-color 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                filter 0.45s cubic-bezier(0.22, 1, 0.36, 1);
     cursor: default;
   }
 
   .hero-logo:hover {
-    filter: invert(35%) sepia(70%) saturate(3800%) hue-rotate(354deg) brightness(96%) contrast(96%)
-            drop-shadow(0 6px 28px rgba(226, 64, 46, 0.45))
+    background-color: var(--red);
+    filter: drop-shadow(0 6px 28px rgba(226, 64, 46, 0.45))
             drop-shadow(0 1px 0 rgba(0, 0, 0, 0.6));
   }
 
@@ -1164,17 +1169,19 @@
   .tooley-mark {
     display: block;
     width: 220px;
-    height: auto;
+    aspect-ratio: 2000 / 592;
     margin-bottom: 14px;
-    /* Black logo on transparent → cream on dark */
-    filter: invert(1) brightness(0.94) sepia(0.18) saturate(0.5);
+    /* Mask + background-color — cream at rest, exact brand red on hover */
+    background-color: var(--ink);
+    -webkit-mask: url("tooley-wordmark.png") center/contain no-repeat;
+            mask: url("tooley-wordmark.png") center/contain no-repeat;
     opacity: 0.85;
-    transition: filter 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+    transition: background-color 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
   }
 
   .tooley-mark:hover {
     opacity: 1;
-    filter: invert(35%) sepia(70%) saturate(3800%) hue-rotate(354deg) brightness(96%) contrast(96%);
+    background-color: var(--red);
   }
 
   @media (max-width: 600px) {
@@ -1730,7 +1737,7 @@
 
 <nav class="nav">
   <a href="#top" class="nav-mark" aria-label="El Valle Studios">
-    <img src="nav-mark.png" alt="El Valle Studios" class="nav-logo" />
+    <span class="nav-logo" role="img" aria-label="El Valle Studios"></span>
   </a>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
@@ -1749,7 +1756,7 @@
   </div>
 
   <div class="hero-logo-wrap reveal">
-    <img src="el-valle-wordmark.svg" alt="El Valle Studios" class="hero-logo" />
+    <span class="hero-logo" role="img" aria-label="El Valle Studios"></span>
   </div>
 
   <div class="hero-bottom reveal">
@@ -1912,7 +1919,7 @@
 
         <div class="member-credits">
           <div class="credit-block">
-            <img src="tooley-wordmark.png" alt="Tucker Tooley Entertainment" class="tooley-mark" />
+            <span class="tooley-mark" role="img" aria-label="Tucker Tooley Entertainment"></span>
             <div class="credit-label">Physical Production</div>
             <ul class="credit-list">
               <li><span class="credit-title">Hell Fest</span> <span class="credit-note">CBS Films</span></li>
