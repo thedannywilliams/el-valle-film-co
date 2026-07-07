@@ -194,13 +194,13 @@
     justify-content: space-between;
     position: relative;
     overflow: hidden;
-    /* Caribbean coastline photo layered under a heavy dark grade */
-    background-image:
-      linear-gradient(rgba(7, 4, 3, 0.72), rgba(7, 4, 3, 0.78) 50%, rgba(7, 4, 3, 0.88)),
-      url("hero-bg.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    /* Rich dark gradient — cinematic, no soft photo */
+    background:
+      radial-gradient(ellipse 90% 70% at 50% 40%,
+                      rgba(60, 30, 22, 0.55) 0%,
+                      rgba(20, 10, 8, 0.35) 45%,
+                      transparent 75%),
+      linear-gradient(180deg, #0a0605 0%, #100b08 55%, #060403 100%);
   }
 
   /* Soft vignette on top so the wordmark sits in the brightest patch */
