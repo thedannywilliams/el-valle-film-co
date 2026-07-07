@@ -1364,10 +1364,21 @@
   }
 
   .film {
-    display: grid;
-    grid-template-columns: minmax(0, 1.2fr) 1fr;
-    gap: 56px;
-    align-items: center;
+    display: block;
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .film-meta { text-align: center; }
+
+  .film-credits {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .film-credit-row {
+    justify-content: center;
   }
 
   .film-still {
@@ -1710,12 +1721,11 @@
 <section id="films">
   <div class="section-head reveal">
     <div class="section-num"><span class="n">02</span> Selected Films <span class="es-pair">· Películas</span></div>
-    <h2 class="section-title">Pictures we've <em>made.</em></h2>
+    <h2 class="section-title">In <em>production.</em></h2>
   </div>
 
   <div class="films">
     <article class="film reveal">
-      <div class="film-still" aria-hidden="true"></div>
       <div class="film-meta">
         <h3 class="film-title"><em>Brownie</em></h3>
         <div class="film-credits">
@@ -1736,7 +1746,6 @@
     </article>
 
     <article class="film reveal">
-      <div class="film-still" aria-hidden="true"></div>
       <div class="film-meta">
         <h3 class="film-title"><em>Conspiracy Theory</em></h3>
         <div class="film-credits">
