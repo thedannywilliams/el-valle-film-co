@@ -126,9 +126,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(to bottom, rgba(7, 4, 3, 0.96) 0%, rgba(7, 4, 3, 0.85) 60%, rgba(7, 4, 3, 0) 100%);
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    background: transparent;
+    border-bottom: 1px solid transparent;
+    transition: background-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                padding 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .nav.scrolled {
+    background-color: rgba(6, 4, 3, 0.96);
+    border-bottom-color: rgba(242, 234, 220, 0.08);
+    padding: 14px 40px;
   }
 
   .nav-mark {
@@ -1648,6 +1656,15 @@
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -50px 0px' });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Fixed nav: solidify once the user scrolls past the top
+  const nav = document.querySelector('.nav');
+  const onScroll = () => {
+    if (window.scrollY > 40) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 
   window.addEventListener('load', () => {
     document.querySelectorAll('.contact-hero .reveal').forEach((el, i) => {
