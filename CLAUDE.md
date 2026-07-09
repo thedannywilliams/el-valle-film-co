@@ -13,7 +13,7 @@ Single-page-each, no build step. All CSS/JS inline.
 ## Design system (light studio redesign, 2026-07)
 
 - **LIGHT studio palette** (flipped from the old dark cinematic look — do not reintroduce dark backgrounds): `--paper: #f2eadc` warm cream bg, `--ink: #171009` near-black warm brown type, `--red: #E2402E` brand red accent, `--paper-deep: #0d0805` reserved for the fixed "An El Valle Ventures Company" strip
-- **Hero**: giant edge-to-edge typographic wordmark — "EL VALLE" / "STUDIOS." stacked in Archivo Black with a red period, sized via `calc(…vw - …px)` so BOTH lines fill the container width exactly (Archivo Black @100px: "EL VALLE" ≈ 528px, "STUDIOS." ≈ 533px — retune these calcs if the text or tracking changes). Inspired by neonrated.com / wmeagency.com. Static for now — motion comes later
+- **Hero**: giant edge-to-edge typographic wordmark — "EL VALLE" / "STUDIOS" stacked in Archivo Black, closed by the cursive V mark in brand red (`.hero-period` = nav-mark.png as a CSS mask, 0.64em) standing in for the period; lines sized via `calc(…vw - …px)` so BOTH fill the container width exactly (Archivo Black @100px: "EL VALLE" ≈ 528px, "STUDIOS." ≈ 533px — retune these calcs if the text or tracking changes). Inspired by neonrated.com / wmeagency.com. Static for now — motion comes later
 - **Type**: Fraunces (serif italic accents), Archivo (sans), Archivo Black (display caps), JetBrains Mono (labels), Allura (cursive V)
 - **Texture**: fine ink-noise paper grain via `body::before` (multiply, 5%). The old dark vignette was removed
 - **Palm/filmmaker art**: source PNGs are black ink — they sit directly on cream with only a slight sepia warm filter (no `invert()`)

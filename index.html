@@ -275,10 +275,19 @@
   }
 
   .hero-line-2 {
-    font-size: clamp(64px, calc(18.96vw - 15.2px), 309px);
+    font-size: clamp(60px, calc(17.77vw - 14.2px), 290px);
   }
 
-  .hero-period { color: var(--red); }
+  /* Cursive V mark stands in for the period — nav-mark.png masked brand red */
+  .hero-period {
+    display: inline-block;
+    width: 0.64em;
+    height: 0.56em;
+    margin-left: 0.05em;
+    background-color: var(--red);
+    -webkit-mask: url("nav-mark.png") center bottom / contain no-repeat;
+            mask: url("nav-mark.png") center bottom / contain no-repeat;
+  }
 
   .hero-bottom {
     display: flex;
@@ -1547,7 +1556,7 @@
     .hero { padding: 140px 20px 28px; min-height: 100svh; }
     .hero-title { line-height: 0.88; }
     .hero-line { font-size: clamp(40px, calc(19.15vw - 7.7px), 140px); }
-    .hero-line-2 { font-size: clamp(40px, calc(18.96vw - 7.6px), 139px); }
+    .hero-line-2 { font-size: clamp(38px, calc(17.77vw - 7.1px), 130px); }
     .hero-bottom { flex-direction: column; align-items: center; text-align: center; gap: 24px; }
     .hero-tag { max-width: none; }
     .hero-cta { justify-self: center; }
@@ -1731,7 +1740,7 @@
 
   <h1 class="hero-title" aria-label="El Valle Studios">
     <span class="hero-line reveal">El Valle</span>
-    <span class="hero-line hero-line-2 reveal">Studios<span class="hero-period">.</span></span>
+    <span class="hero-line hero-line-2 reveal">Studios<span class="hero-period" role="img" aria-hidden="true"></span></span>
   </h1>
 
   <div class="hero-bottom reveal">
