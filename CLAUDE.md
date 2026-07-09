@@ -1,36 +1,34 @@
-# CLAUDE.md — El Valle Film Co. site
+# CLAUDE.md — El Valle Studios site (elvallestudios.com)
 
 Auto-loaded by Claude Code when run in this folder.
 
 ## What's here
 
-- `index.html` — home page (hero, About, Films, Team)
-- `contact.html` — contact page with Netlify form
-- `brownie-still.jpg` — film still used on the Brownie card in the Films section
+- `index.html` — home page (hero, About, Films, Team, Contact form). ~1MB: several images are inlined as base64 (palm silhouettes, filmmaker figure, V watermark, BTS photo)
+- `contact.html` — standalone contact page (NOT linked from the homepage nav — the homepage has an in-page contact form; keep contact.html styled in sync anyway since it's reachable by URL)
+- `daniel-portrait.jpg`, `brownie-still.jpg`, wordmark/favicon assets
 
 Single-page-each, no build step. All CSS/JS inline.
 
-## Design system (current)
+## Design system (light studio redesign, 2026-07)
 
-- **Dark cinematic palette** (Caribbean dusk): `--paper: #100b08` background, `--ink: #f2eadc` cream type, `--red: #E2402E` terracotta accent
-- **Type**: Fraunces (italic body), Archivo (sans), Archivo Black (display caps), JetBrains Mono (labels), Allura (cursive V mark)
-- **Display headlines**: Archivo Black uppercase — section titles + film titles. Red emphasis = `<em>` (no italic in display caps).
-- **Top strip**: "An El Valle Ventures Company" mono caps fixed across the top of every page
-- **Films section**: 3 cards, 16:9 stills, image-left + meta-right on desktop, stacked on mobile
-- **Contact form**: Netlify Forms — needs `data-netlify="true"` to stay on the form for Netlify to detect on deploy; AJAX submit replaces form with inline confirmation
+- **LIGHT studio palette** (flipped from the old dark cinematic look — do not reintroduce dark backgrounds): `--paper: #f2eadc` warm cream bg, `--ink: #171009` near-black warm brown type, `--red: #E2402E` brand red accent, `--paper-deep: #0d0805` reserved for the fixed "An El Valle Ventures Company" strip
+- **Hero**: giant edge-to-edge typographic wordmark — "EL VALLE" / "STUDIOS." stacked in Archivo Black with a red period, sized via `calc(…vw - …px)` so BOTH lines fill the container width exactly (Archivo Black @100px: "EL VALLE" ≈ 528px, "STUDIOS." ≈ 533px — retune these calcs if the text or tracking changes). Inspired by neonrated.com / wmeagency.com. Static for now — motion comes later
+- **Type**: Fraunces (serif italic accents), Archivo (sans), Archivo Black (display caps), JetBrains Mono (labels), Allura (cursive V)
+- **Texture**: fine ink-noise paper grain via `body::before` (multiply, 5%). The old dark vignette was removed
+- **Palm/filmmaker art**: source PNGs are black ink — they sit directly on cream with only a slight sepia warm filter (no `invert()`)
+- Red emphasis in display caps = `<em>` (no italic). Spanish flourishes use `.es` (Fraunces italic red)
+- **Contact form**: Netlify Forms — keep `data-netlify="true"`; AJAX submit swaps in inline confirmation
 
 ## Live preview
 
-Pointed at `/tmp/el-valle/` on port 4324 (launch.json name: `el-valle`). When iterating, edit files here, then copy to `/tmp/el-valle/` to preview. `python3 -m http.server` can't serve from `~/Desktop` reliably due to macOS sandbox — always preview from `/tmp/el-valle/`.
+launch.json name `el-valle` serves `/tmp/el-valle/` on port 4324. Edit here, then `cp` changed files to `/tmp/el-valle/` (macOS sandbox blocks serving from ~/Desktop).
 
-## Deploy (Netlify)
+## Deploy
 
-1. Drag this folder onto https://app.netlify.com/drop
-2. After first deploy: Forms tab → enable email notifications for the contact form
-3. Suggested domain: `elvallefilmco.com`
+**Auto-deploy connected (2026-07-07):** GitHub `thedannywilliams/el-valle-film-co` → Netlify. Workflow = commit + push; no manual drag-and-drop.
 
 ## Outstanding
 
-- Vandal + Divinity stills are empty 16:9 placeholders (show a faint X cross). Drop in `vandal-still.jpg` and `divinity-still.jpg` to fill — same `<img>` pattern as the Brownie card.
-- No favicon yet (add `<link rel="icon" ...>` in both files)
-- No `og:image` for social shares
+- Hero is static — user plans motion/video later
+- Film cards (Brownie, Conspiracy Theory) currently have no stills on the homepage

@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="color-scheme" content="dark" />
+<meta name="color-scheme" content="light" />
+<meta name="theme-color" content="#f2eadc" />
 <title>Contact — El Valle Studios</title>
 <meta name="description" content="Get in touch with El Valle Studios — an inclusive, independent entertainment studio founded by Daniel Williams-Lopez." />
 <meta property="og:title" content="Contact — El Valle Studios" />
@@ -18,18 +19,18 @@
 </content>
 </invoke><style>
   :root {
-    /* Dark cinematic palette — super dark brown, near-midnight */
-    --paper: #070403;
-    --paper-warm: #120c08;
-    --paper-deep: #030201;
-    --ink: #f2eadc;
-    --ink-soft: #cdc4b3;
+    /* Light studio palette — warm cream paper, near-black warm ink, same brand red */
+    --paper: #f2eadc;
+    --paper-warm: #faf6ec;
+    --paper-deep: #0d0805;
+    --ink: #171009;
+    --ink-soft: #4c4335;
     --ink-muted: #8a8175;
     --red: #E2402E;
     --red-deep: #b32a1c;
-    --red-ghost: rgba(226, 64, 46, 0.14);
-    --line: rgba(242, 234, 220, 0.10);
-    --line-strong: rgba(242, 234, 220, 0.22);
+    --red-ghost: rgba(226, 64, 46, 0.12);
+    --line: rgba(23, 16, 9, 0.12);
+    --line-strong: rgba(23, 16, 9, 0.28);
     --serif: "Fraunces", Georgia, serif;
     --script: "Allura", cursive;
     --sans: "Archivo", sans-serif;
@@ -52,29 +53,19 @@
     position: relative;
   }
 
-  /* Film grain — fine warm-cream noise on dark */
+  /* Paper grain — fine warm-ink noise on cream */
   body::before {
     content: "";
     position: fixed;
     inset: 0;
     pointer-events: none;
     z-index: 100;
-    opacity: 0.10;
-    mix-blend-mode: screen;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%27240%27 height=%27240%27><filter id=%27n%27><feTurbulence type=%27fractalNoise%27 baseFrequency=%270.95%27 numOctaves=%273%27 stitchTiles=%27stitch%27/><feColorMatrix values=%270 0 0 0 0.95  0 0 0 0 0.92  0 0 0 0 0.86  0 0 0 0.6 0%27/></filter><rect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23n)%27/></svg>");
+    opacity: 0.05;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns=%27http://www.w3.org/2000/svg%27 width=%27240%27 height=%27240%27><filter id=%27n%27><feTurbulence type=%27fractalNoise%27 baseFrequency=%270.95%27 numOctaves=%273%27 stitchTiles=%27stitch%27/><feColorMatrix values=%270 0 0 0 0.10  0 0 0 0 0.07  0 0 0 0 0.04  0 0 0 0.6 0%27/></filter><rect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23n)%27/></svg>");
   }
 
-  /* Dark vignette */
-  body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 99;
-    background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.55) 100%);
-  }
-
-  ::selection { background: var(--red); color: var(--ink); }
+  ::selection { background: var(--red); color: var(--paper); }
   a { color: inherit; text-decoration: none; }
 
   /* ========= VENTURE TAG ========= */
@@ -84,7 +75,7 @@
     z-index: 60;
     padding: 9px 40px;
     background: var(--paper-deep);
-    color: var(--ink-soft);
+    color: #cdc4b3;
     font-family: var(--mono);
     font-size: 9.5px;
     letter-spacing: 0.32em;
@@ -104,7 +95,7 @@
   }
 
   .venture-tag strong {
-    color: var(--ink);
+    color: #f2eadc;
     font-weight: 500;
   }
 
@@ -126,8 +117,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--paper-deep);
-    border-bottom: 1px solid rgba(242, 234, 220, 0.06);
+    background-color: var(--paper);
+    border-bottom: 1px solid var(--line);
     transition: padding 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
@@ -149,8 +140,7 @@
     height: 80px;
     width: auto;
     display: block;
-    /* Black V on transparent → pure white via invert (no sepia tint) */
-    filter: invert(1);
+    /* Black V on transparent — already ink-dark, no filter needed on cream */
   }
 
   .nav-links {
