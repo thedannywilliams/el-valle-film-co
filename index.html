@@ -289,6 +289,26 @@
             mask: url("nav-mark.png") center bottom / contain no-repeat;
   }
 
+  /* Full-bleed coastal band — fills the space between the wordmark and the bottom row */
+  .hero-photo {
+    flex: 1 1 auto;
+    min-height: clamp(220px, 26vh, 340px);
+    margin: 36px 0 30px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .hero-photo img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 55%;
+    display: block;
+    filter: saturate(0.95) contrast(1.02);
+  }
+
   .hero-bottom {
     display: flex;
     justify-content: space-between;
@@ -1557,6 +1577,7 @@
     .hero-title { line-height: 0.88; }
     .hero-line { font-size: clamp(40px, calc(19.15vw - 7.7px), 140px); }
     .hero-line-2 { font-size: clamp(38px, calc(17.77vw - 7.1px), 130px); }
+    .hero-photo { min-height: 160px; margin: 28px 0 24px; }
     .hero-bottom { flex-direction: column; align-items: center; text-align: center; gap: 24px; }
     .hero-tag { max-width: none; }
     .hero-cta { justify-self: center; }
@@ -1742,6 +1763,10 @@
     <span class="hero-line reveal">El Valle</span>
     <span class="hero-line hero-line-2 reveal">Studios<span class="hero-period" role="img" aria-hidden="true"></span></span>
   </h1>
+
+  <figure class="hero-photo reveal">
+    <img src="hero-coast.jpg" alt="Aerial view of a palm-lined coastal road curving toward a turquoise bay" fetchpriority="high" />
+  </figure>
 
   <div class="hero-bottom reveal">
     <p class="hero-tag"><em>Stories from the valley.</em> <span class="es">Historias desde el valle.</span></p>
