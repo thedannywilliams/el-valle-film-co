@@ -126,17 +126,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: transparent;
-    border-bottom: 1px solid transparent;
-    transition: background-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-                border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-                padding 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    /* Solid dark bar — no blur, no transparent-at-rest */
+    background-color: var(--paper-deep);
+    border-bottom: 1px solid rgba(242, 234, 220, 0.06);
+    transition: padding 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  /* Solid dark bar once the user scrolls past the hero fold — no blur */
+  /* Condense on scroll — subtle tightening, same bg */
   .nav.scrolled {
-    background-color: rgba(6, 4, 3, 0.96);
-    border-bottom-color: rgba(242, 234, 220, 0.08);
     padding: 14px 40px;
   }
 
@@ -281,69 +278,54 @@
   .hero-meta span { color: var(--ink); }
   .hero-meta-right { text-align: right; }
 
-  .hero-logo-wrap {
-    margin: 0 0 8px;
+  .hero-title-wrap {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
-    position: relative;
+    gap: 22px;
   }
 
-  .hero-logo {
-    width: clamp(340px, 48vw, 640px);
-    aspect-ratio: 1600 / 468;
-    max-width: 100%;
-    display: block;
-    /* Mask + background-color — cream at rest, exact brand red on hover */
-    background-color: var(--ink);
-    -webkit-mask: url("el-valle-wordmark.png") center/contain no-repeat;
-            mask: url("el-valle-wordmark.png") center/contain no-repeat;
-    animation: logoReveal 1.4s cubic-bezier(0.22, 1, 0.36, 1) both;
-    transition: background-color 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-    cursor: default;
+  .hero-title {
+    font-family: var(--display);
+    font-size: clamp(36px, 5.4vw, 76px);
+    line-height: 0.92;
+    font-weight: 400;
+    letter-spacing: -0.005em;
+    text-transform: uppercase;
+    color: var(--ink);
+    margin: 0;
   }
 
-  .hero-logo:hover {
-    background-color: var(--red);
+  .hero-title em {
+    font-style: normal;
+    color: var(--red);
+    font-weight: 400;
   }
 
-  /* Drop-shadow lives on the wrap, not on the masked element itself —
-     Chrome/Safari render the shadow as a blur of the mask silhouette
-     when both are applied to the same node, ghosting the wordmark. */
-  .hero-logo-wrap {
-    filter: drop-shadow(0 4px 24px rgba(0, 0, 0, 0.55));
-    transition: filter 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .hero-logo-wrap:hover {
-    filter: drop-shadow(0 6px 28px rgba(226, 64, 46, 0.45));
-  }
-
-  @keyframes logoReveal {
-    0%   { opacity: 0; transform: scale(0.96); }
-    100% { opacity: 1; transform: scale(1); }
-  }
-
-  .hero-bottom {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
-    align-items: end;
-  }
-
-  .hero-tagline {
+  .hero-lead {
     font-family: var(--serif);
-    font-size: clamp(20px, 2.2vw, 28px);
+    font-size: clamp(18px, 2vw, 26px);
     font-weight: 300;
     font-style: italic;
-    line-height: 1.35;
-    max-width: 680px;
+    line-height: 1.4;
+    max-width: 760px;
     color: var(--ink-soft);
+    margin: 0;
   }
 
-  .hero-tagline em {
+  .hero-lead em {
     font-style: italic;
     color: var(--red);
     font-weight: 400;
+  }
+
+  .hero-bottom {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .hero-cta {
@@ -1061,11 +1043,6 @@
     font-size: 0.95em;
   }
 
-  /* Hero tagline Spanish closer */
-  .hero-tagline .es {
-    color: var(--red);
-  }
-
   /* Footer Spanish signoff */
   .footer-signoff {
     text-align: center;
@@ -1603,10 +1580,9 @@
     .nav-links { gap: 18px; font-size: 10px; }
 
     .hero { padding: 76px 20px 18px; min-height: 46vh; }
-    .hero-bottom { grid-template-columns: 1fr; gap: 22px; }
-    .hero-cta { justify-self: start; }
-    .hero-logo-wrap { margin: 0 0 6px; justify-content: center; }
-    .hero-logo { width: clamp(240px, 72vw, 380px); height: auto; }
+    .hero-title-wrap { gap: 18px; }
+    .hero-lead { max-width: 100%; }
+    .hero-cta { justify-self: center; }
     .hero-palm { opacity: 0.04; width: 70vw; right: -20%; }
 
     section { padding: 56px 20px; }
@@ -1669,7 +1645,8 @@
     .about-body,
     .lead,
     .about-body p,
-    .hero-tagline,
+    .hero-title,
+    .hero-lead,
     .hero-meta,
     .hero-meta-right,
     .name-story,
@@ -1786,14 +1763,14 @@
     <div class="hero-meta-right">Los Angeles <span class="dot"></span> Atlanta <span class="dot"></span> <em class="es">desde Samaná</em></div>
   </div>
 
-  <div class="hero-logo-wrap reveal">
-    <span class="hero-logo" role="img" aria-label="El Valle Studios"></span>
+  <div class="hero-title-wrap reveal">
+    <h1 class="hero-title">El <em>Valle.</em></h1>
+    <p class="hero-lead">
+      &hellip;is an inclusive, independent entertainment studio founded by actor and producer <em>Daniel Williams-Lopez.</em>
+    </p>
   </div>
 
   <div class="hero-bottom reveal">
-    <p class="hero-tagline">
-      An inclusive, independent entertainment studio that <em>bridges us.</em>
-    </p>
     <div class="hero-cta">
       <a href="#about" class="btn btn-primary">About the Company <span class="arrow">→</span></a>
     </div>

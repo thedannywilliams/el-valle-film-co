@@ -126,16 +126,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: transparent;
-    border-bottom: 1px solid transparent;
-    transition: background-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-                border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-                padding 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    background-color: var(--paper-deep);
+    border-bottom: 1px solid rgba(242, 234, 220, 0.06);
+    transition: padding 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .nav.scrolled {
-    background-color: rgba(6, 4, 3, 0.96);
-    border-bottom-color: rgba(242, 234, 220, 0.08);
     padding: 14px 40px;
   }
 
