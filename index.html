@@ -1199,15 +1199,19 @@
     .tooley-mark { width: 180px; }
   }
 
-  /* Tooley mark in the contact rep column */
-  .contact-tooley {
-    width: 240px;
-    margin-bottom: 0;
+  /* El Valle Studios wordmark in the contact rep column */
+  .contact-evs-mark {
+    display: block;
+    width: 260px;
+    aspect-ratio: 1600 / 468;
     margin-top: 6px;
+    background-color: var(--ink);
+    -webkit-mask: url("el-valle-wordmark.png") center / contain no-repeat;
+            mask: url("el-valle-wordmark.png") center / contain no-repeat;
   }
 
   @media (max-width: 900px) {
-    .contact-tooley { margin-left: auto; margin-right: auto; }
+    .contact-evs-mark { margin-left: auto; margin-right: auto; }
   }
 
   /* ========= INLINE CONTACT (form + rep aside) ========= */
@@ -1767,7 +1771,7 @@
 
   <div class="hero-meta reveal">
     <div>Independent Entertainment &mdash; <span>Est. 2019</span></div>
-    <div class="hero-meta-right">Los Angeles <span class="dot"></span> Atlanta <span class="dot"></span> <em class="es">desde Samaná</em></div>
+    <div class="hero-meta-right">Los Angeles <span class="dot"></span> Atlanta</div>
   </div>
 
   <h1 class="hero-title" aria-label="El Valle Studios">
@@ -2017,13 +2021,12 @@
         <div class="contact-label">Based <span class="es-pair">· Sede</span></div>
         <div class="contact-value-list">
           Los Angeles<br>
-          Atlanta<br>
-          <em class="es">desde Samaná</em>
+          Atlanta
         </div>
       </div>
 
       <div class="contact-rep-card">
-        <a href="https://tooleyentertainment.com" target="_blank" rel="noopener noreferrer" class="tooley-mark contact-tooley" aria-label="Tucker Tooley Entertainment (opens in new tab)"></a>
+        <span class="contact-evs-mark" role="img" aria-label="El Valle Studios"></span>
       </div>
     </aside>
   </div>
