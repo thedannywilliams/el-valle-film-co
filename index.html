@@ -484,6 +484,13 @@
     color: var(--ink);
   }
 
+  /* Disable the drop-cap when the lead flows from an EL VALLE. title
+     (paragraph starts with an ellipsis; ::first-letter would grab the
+     'i' of 'is' and float it huge) */
+  .lead.flow::first-letter {
+    all: unset;
+  }
+
   .lead::first-letter {
     font-family: var(--serif);
     font-size: 3.2em;
@@ -1782,7 +1789,7 @@
   <div class="about-grid">
     <div></div>
     <div class="about-body reveal">
-      <p class="lead">
+      <p class="lead flow">
         &hellip;is an inclusive, independent entertainment studio founded by actor and producer <em>Daniel Williams-Lopez.</em>
       </p>
 
