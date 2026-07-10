@@ -1049,7 +1049,7 @@
   /* Footer Spanish signoff */
   .footer-signoff {
     text-align: center;
-    margin: 24px 0 8px;
+    margin: 8px 0 20px;
     font-size: 14px;
     letter-spacing: 0.01em;
   }
@@ -1120,16 +1120,27 @@
 
   /* ========= FOOTER ========= */
   footer {
-    padding: 48px 40px 40px;
-    border-top: 1px solid var(--line-strong);
+    padding: 20px 40px 28px;
     position: relative;
   }
 
+  /* Line-palms-line divider (like the section dividers elsewhere) —
+     replaces the standalone footer top border so the palms sit
+     inside the line instead of orphaned below it */
   .footer-palm-row {
     display: flex;
-    justify-content: center;
-    margin-bottom: 32px;
-    gap: 16px;
+    align-items: center;
+    gap: 22px;
+    margin-bottom: 22px;
+  }
+  .footer-palm-row .line {
+    flex: 1;
+    height: 1px;
+    background: var(--line-strong);
+  }
+  .footer-palm-row .palms {
+    display: flex;
+    gap: 12px;
   }
 
   .footer-palm-row .p {
@@ -1138,7 +1149,7 @@
     opacity: 0.4;
   }
 
-  .footer-palm-row .p:nth-child(2) { opacity: 0.7; }
+  .footer-palm-row .palms .p:nth-child(2) { opacity: 0.7; }
 
   .footer-row {
     display: flex;
@@ -2064,7 +2075,9 @@
 
 <footer>
   <div class="footer-palm-row" aria-hidden="true">
-    <span class="p"></span><span class="p"></span><span class="p"></span>
+    <span class="line"></span>
+    <span class="palms"><span class="p"></span><span class="p"></span><span class="p"></span></span>
+    <span class="line"></span>
   </div>
   <div class="footer-signoff"><em class="es">Hecho con amor desde dos valles.</em></div>
   <div class="footer-row">
