@@ -1757,9 +1757,20 @@
       justify-self: center;
     }
 
-    /* Contact form field grid — center the label/value pair */
+    /* Contact form field grid — center the label/value pair,
+       but keep each field full-width so inputs (esp. the long
+       "Filmmaker, writer, financier..." placeholder) don't clip.
+       Overrides the shared `.contact-form { justify-items: center }`
+       above, which was collapsing grid tracks to intrinsic width. */
+    .contact-form,
+    .contact-form-hp {
+      grid-template-columns: 1fr;
+      justify-items: stretch;
+    }
     .contact-field {
       align-items: center;
+      justify-self: stretch;
+      width: 100%;
     }
   }
 </style>
