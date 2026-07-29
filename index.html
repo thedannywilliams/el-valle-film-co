@@ -120,13 +120,23 @@
     /* Solid paper bar — light, gallery-bright */
     background-color: var(--paper);
     border-bottom: 1px solid var(--line);
-    transition: padding 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: padding 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+                background-color 0.45s ease, border-color 0.45s ease;
   }
 
   /* Condense on scroll — subtle tightening, same bg */
   .nav.scrolled {
     padding: 14px 40px;
   }
+
+  /* Over the video ident (page top, before scroll): transparent nav, cream marks */
+  .nav:not(.scrolled) {
+    background-color: transparent;
+    border-bottom-color: transparent;
+  }
+  .nav:not(.scrolled) .nav-logo { background-color: var(--paper); }
+  .nav:not(.scrolled) .nav-links a { color: var(--paper); }
+  .nav:not(.scrolled) .nav-links a:hover { color: #fff; }
 
   .nav-mark {
     display: flex;
@@ -181,6 +191,57 @@
 
   .nav-links a:hover { color: var(--red); }
   .nav-links a:hover::after { width: 100%; }
+
+  /* ========= HERO IDENT (logo-card video) ========= */
+  .hero-ident {
+    position: relative;
+    height: 100svh;
+    width: 100%;
+    overflow: hidden;
+    background: #b3231b;                 /* red fallback while the poster/video load */
+  }
+
+  .hero-ident-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+
+  .hero-ident-scroll {
+    position: absolute;
+    left: 50%;
+    bottom: 34px;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 9px;
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: rgba(242, 234, 220, 0.82);
+    transition: color 0.3s ease;
+  }
+  .hero-ident-scroll:hover { color: #fff; }
+  .hero-ident-scroll .chev {
+    font-size: 13px;
+    line-height: 1;
+    animation: scrollHint 2s ease-in-out infinite;
+  }
+  @keyframes scrollHint {
+    0%, 100% { transform: translateY(0); opacity: 0.85; }
+    50%      { transform: translateY(5px); opacity: 0.5; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-ident-scroll .chev { animation: none; }
+  }
 
   /* ========= HERO ========= */
   .hero {
@@ -1544,6 +1605,30 @@
     margin-top: 12px;
   }
 
+  .film-title-link {
+    color: inherit;
+    transition: color 0.3s ease;
+  }
+  .film-title-link:hover { color: var(--red-deep); }
+
+  .film-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 26px;
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--red);
+    border-bottom: 1px solid transparent;
+    padding-bottom: 3px;
+    transition: border-color 0.3s ease, color 0.3s ease;
+  }
+  .film-link:hover { border-bottom-color: var(--red); color: var(--red-deep); }
+  .film-link .arrow-ext { transition: transform 0.3s ease; }
+  .film-link:hover .arrow-ext { transform: translate(2px, -2px); }
+
   .film-synopsis {
     font-family: var(--serif);
     font-size: 17px;
@@ -1803,7 +1888,18 @@
   </ul>
 </nav>
 
-<header class="hero" id="top">
+<section class="hero-ident" id="top">
+  <video class="hero-ident-video" autoplay muted playsinline preload="auto"
+         poster="hero-logocard.jpg" aria-label="El Valle Studios">
+    <source src="hero-logocard.mp4" type="video/mp4">
+  </video>
+  <a href="#about" class="hero-ident-scroll" aria-label="Scroll to enter">
+    <span>Scroll</span>
+    <span class="chev" aria-hidden="true">&darr;</span>
+  </a>
+</section>
+
+<header class="hero">
   <div class="hero-palm" aria-hidden="true" style="display:none"></div>
 
   <div class="hero-meta reveal">
@@ -1905,12 +2001,8 @@
             <span class="film-credit-value">Curtis Adair</span>
           </div>
           <div class="film-credit-row">
-            <span class="film-credit-label">Producer</span>
-            <span class="film-credit-value">Lane Miller</span>
-          </div>
-          <div class="film-credit-row">
-            <span class="film-credit-label">Producer</span>
-            <span class="film-credit-value">Daniel Williams-Lopez</span>
+            <span class="film-credit-label">Producers</span>
+            <span class="film-credit-value">Lane Miller, Daniel Williams-Lopez</span>
           </div>
           <div class="film-credit-row">
             <span class="film-credit-label">Location</span>
@@ -1922,7 +2014,7 @@
 
     <article class="film reveal">
       <div class="film-meta">
-        <h3 class="film-title"><em>Conspiracy Theory</em> <span class="film-wt">(Working Title)</span></h3>
+        <h3 class="film-title"><a href="https://www.conspiracytheoryfilm.com" target="_blank" rel="noopener noreferrer" class="film-title-link"><em>Conspiracy Theory</em></a> <span class="film-wt">(Working Title)</span></h3>
         <p class="film-synopsis">At a carefully curated dinner in Silver Lake, struggling writer/actor David pitches his latest project to Margaret, a polished creative executive, and her husband Javier, while his rising-actress girlfriend Izzy tries to keep the evening on track. When another actor named David Greenberg arrives by mistake for a meeting Margaret had scheduled for later, the room's polite discomfort curdles into professional resentment, sexual jealousy, and suspicion. David starts arranging every awkward glance, every past connection, and every industry slight into proof of a larger conspiracy. As Javier is pulled into the same logic, the dinner collapses from social performance into accusation, violence, and a final consequence no one can take back.</p>
         <div class="film-credits">
           <div class="film-credit-row">
@@ -1930,16 +2022,8 @@
             <span class="film-credit-value">Andrew Balcof</span>
           </div>
           <div class="film-credit-row">
-            <span class="film-credit-label">Producer</span>
-            <span class="film-credit-value">Andrew Balcof</span>
-          </div>
-          <div class="film-credit-row">
-            <span class="film-credit-label">Producer</span>
-            <span class="film-credit-value">Daniel Williams-Lopez</span>
-          </div>
-          <div class="film-credit-row">
-            <span class="film-credit-label">Location</span>
-            <span class="film-credit-value">Los Angeles, CA</span>
+            <span class="film-credit-label">Producers</span>
+            <span class="film-credit-value">Andrew Balcof, Daniel Williams-Lopez</span>
           </div>
           <div class="film-credit-row">
             <span class="film-credit-label">Izzy</span>
@@ -1959,9 +2043,14 @@
           </div>
           <div class="film-credit-row">
             <span class="film-credit-label">Margaret</span>
-            <span class="film-credit-value">TBA</span>
+            <span class="film-credit-value">Charlotte McKinney</span>
+          </div>
+          <div class="film-credit-row">
+            <span class="film-credit-label">Location</span>
+            <span class="film-credit-value">Los Angeles, CA</span>
           </div>
         </div>
+        <a href="https://www.conspiracytheoryfilm.com" target="_blank" rel="noopener noreferrer" class="film-link">Visit the site <span class="arrow-ext" aria-hidden="true">&#8599;</span></a>
       </div>
     </article>
   </div>
@@ -2109,6 +2198,13 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
+  // Respect reduced-motion: hold the ident on its poster (final lockup)
+  const identVideo = document.querySelector('.hero-ident-video');
+  if (identVideo && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    identVideo.removeAttribute('autoplay');
+    identVideo.pause();
+  }
+
   const io = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -2122,8 +2218,10 @@
 
   // Fixed nav: solidify once the user scrolls past the hero fold
   const nav = document.querySelector('.nav');
+  const identEl = document.querySelector('.hero-ident');
   const onScroll = () => {
-    if (window.scrollY > 40) nav.classList.add('scrolled');
+    const threshold = identEl ? identEl.offsetHeight - 120 : 40;
+    if (window.scrollY > threshold) nav.classList.add('scrolled');
     else nav.classList.remove('scrolled');
   };
   window.addEventListener('scroll', onScroll, { passive: true });
