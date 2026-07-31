@@ -2193,11 +2193,16 @@
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Respect reduced-motion: hold the ident on its poster (final lockup)
+  // Respect reduced-motion: don't animate — hold on the final lockup frame
   const identVideo = document.querySelector('.hero-ident-video');
   if (identVideo && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     identVideo.removeAttribute('autoplay');
-    identVideo.pause();
+    identVideo.removeAttribute('loop');
+    const holdOnLockup = () => {
+      try { identVideo.pause(); identVideo.currentTime = Math.max(0, (identVideo.duration || 6) - 0.05); } catch (e) {}
+    };
+    if (identVideo.readyState >= 1) holdOnLockup();
+    else identVideo.addEventListener('loadedmetadata', holdOnLockup, { once: true });
   }
 
   const io = new IntersectionObserver((entries) => {
