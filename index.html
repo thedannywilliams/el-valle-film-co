@@ -245,11 +245,12 @@
 
   /* ========= HERO ========= */
   .hero {
-    min-height: 100svh;
+    /* Video ident (.hero-ident) is screen one; this .hero is now
+       just the meta strip between the ident and the About divider —
+       height auto so it doesn't stretch to a viewport of empty cream. */
     padding: 170px 40px 40px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     position: relative;
     overflow: hidden;
     background: var(--paper);
