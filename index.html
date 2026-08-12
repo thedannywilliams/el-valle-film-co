@@ -1319,7 +1319,9 @@
     background-color: var(--ink);
     -webkit-mask: url("el-valle-wordmark.png") center / contain no-repeat;
             mask: url("el-valle-wordmark.png") center / contain no-repeat;
+    transition: background-color 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   }
+  .contact-evs-mark:hover { background-color: var(--red); }
 
   @media (max-width: 900px) {
     .contact-evs-mark { margin-left: auto; margin-right: auto; }
