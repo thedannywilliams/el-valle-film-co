@@ -810,9 +810,12 @@
   /* Magazine-style founder spread */
   .founder-spread {
     display: grid;
-    grid-template-columns: minmax(340px, 460px) 1fr;
+    grid-template-columns: minmax(340px, 460px) minmax(0, 940px);
     gap: 88px;
     align-items: start;
+    max-width: 1500px;
+    margin-inline: auto;
+    justify-content: center;
   }
 
   .founder-spread:hover { transform: none; }
