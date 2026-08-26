@@ -101,11 +101,16 @@
 
   @media (max-width: 600px) {
     .venture-tag {
-      padding: 8px 14px;
-      font-size: 8.5px;
-      letter-spacing: 0.22em;
+      padding: 8px 12px;
+      font-size: 8px;
+      letter-spacing: 0.16em;
+      white-space: nowrap;
     }
-    .venture-tag .dot { margin: 0 8px 2px; }
+    .venture-tag .dot { margin: 0 7px 2px; }
+  }
+  @media (max-width: 380px) {
+    .venture-tag { font-size: 7.2px; letter-spacing: 0.12em; }
+    .venture-tag .dot { display: none; }
   }
 
   /* ========= NAV ========= */
@@ -191,6 +196,66 @@
 
   .nav-links a:hover { color: var(--red); }
   .nav-links a:hover::after { width: 100%; }
+
+  /* ===== Mobile nav (hamburger) ===== */
+  .nav-toggle { display: none; }
+
+  @media (max-width: 720px) {
+    .nav { padding: 14px 20px; }
+    .nav-logo { height: 46px; }
+
+    .nav-toggle {
+      display: block;
+      position: relative;
+      width: 30px;
+      height: 24px;
+      padding: 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 3;
+    }
+    .nav-toggle span {
+      position: absolute;
+      left: 2px;
+      right: 2px;
+      height: 2px;
+      background: var(--ink);
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+    .nav-toggle span:nth-child(1) { top: 8px; }
+    .nav-toggle span:nth-child(2) { top: 15px; }
+    .nav:not(.scrolled):not(.open) .nav-toggle span { background: var(--paper); }
+    /* both bars slide to the same center line, then cross into an X */
+    .nav.open .nav-toggle span:nth-child(1) { top: 11px; transform: rotate(45deg); }
+    .nav.open .nav-toggle span:nth-child(2) { top: 11px; transform: rotate(-45deg); }
+
+    .nav-links {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+      background: var(--paper);
+      border-bottom: 1px solid var(--line);
+      padding: 4px 0 12px;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      pointer-events: none;
+      transition: max-height 0.38s cubic-bezier(0.22,1,0.36,1), opacity 0.3s ease;
+    }
+    .nav.open .nav-links { max-height: 70vh; opacity: 1; pointer-events: auto; }
+    .nav-links li { width: 100%; text-align: center; }
+    /* dropdown sits on a cream panel, so links are always ink (mobile only) */
+    .nav-links a { display: block; padding: 15px 0; font-size: 13px; color: var(--ink) !important; }
+    .nav-links a::after { display: none; }
+    .nav-links a:hover { color: var(--red) !important; }
+    .nav.open { background-color: var(--paper); border-bottom-color: var(--line); }
+    .nav.open .nav-logo { background-color: var(--ink); }
+  }
 
   /* ========= HERO IDENT (logo-card video) ========= */
   .hero-ident {
@@ -1924,7 +1989,10 @@
   <a href="#top" class="nav-mark" aria-label="El Valle Studios">
     <span class="nav-logo" role="img" aria-label="El Valle Studios"></span>
   </a>
-  <ul class="nav-links">
+  <button class="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+    <span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#films">Films</a></li>
     <li><a href="#team">Team</a></li>
@@ -2257,6 +2325,19 @@
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+
+  // Mobile hamburger
+  const navToggle = document.querySelector('.nav-toggle');
+  if (navToggle) {
+    navToggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => {
+      nav.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    }));
+  }
 
   window.addEventListener('load', () => {
     document.querySelectorAll('.hero .reveal').forEach((el, i) => {
