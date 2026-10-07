@@ -619,7 +619,7 @@
   #films .films,
   #team .section-head,
   #team .team-grid {
-    max-width: 1800px;
+    max-width: none;
     margin-left: auto;
     margin-right: auto;
   }
@@ -899,10 +899,10 @@
   /* Magazine-style founder spread */
   .founder-spread {
     display: grid;
-    grid-template-columns: minmax(400px, 580px) minmax(0, 940px);
+    grid-template-columns: minmax(400px, 580px) minmax(0, 1fr);
     gap: 80px;
     align-items: start;
-    max-width: 1800px;
+    max-width: none;
     margin-inline: auto;
     justify-content: center;
   }
@@ -1614,7 +1614,7 @@
 
   .film {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 560px);
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     column-gap: clamp(44px, 5vw, 90px);
     row-gap: clamp(32px, 4vw, 56px);
     align-items: start;
