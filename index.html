@@ -1623,36 +1623,20 @@
     text-align: left;
   }
 
-  /* Conspiracy Theory entry: no scene still, so meta fills below the poster */
-  .film--conspiracy {
-    grid-template-columns: 1fr;
-  }
-  .film--conspiracy .film-meta {
-    max-width: 940px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-  }
-  .film--conspiracy .film-credit-row {
-    justify-content: center;
-    grid-template-columns: 140px 1fr;
-  }
-
-  /* Key-art poster at the top of a film entry — natural aspect, no letterbox */
+  /* Key-art poster sits in the LEFT column of the film grid (like a
+     scene still would) — poster left, credits/meta right. Portrait
+     poster fills the left column at natural aspect. */
   .film-poster-wide {
-    grid-column: 1 / -1;
-    margin: 0 0 16px;
+    grid-column: 1;
+    margin: 0;
     padding: 0;
     display: block;
     overflow: hidden;
     border: 1px solid var(--line-strong);
     box-shadow: 0 32px 60px -28px rgba(23, 16, 9, 0.35);
     background: transparent;
-    /* Center the poster inside the wider row with a comfortable width */
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 24px;
+    position: sticky;
+    top: 96px;
   }
   .film-poster-wide img {
     display: block;
@@ -1660,7 +1644,11 @@
     height: auto;
   }
   @media (max-width: 900px) {
-    .film-poster-wide { max-width: 100%; margin: 0 0 20px; }
+    .film-poster-wide {
+      position: static;
+      max-width: 100%;
+      margin: 0 0 20px;
+    }
   }
 
   .film-meta { text-align: left; }
