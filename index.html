@@ -609,11 +609,17 @@
     display: block;
   }
 
-  /* keep the whole About section a comfortable, centered width — not full-bleed */
+  /* Section content width — uniform across About / Films / Team so the
+     page reads as one wide canvas on desktop. Mobile falls back to the
+     base section's 20px side padding (set in the mobile media query). */
   #about .section-head,
   #about .about-grid,
-  #about .pillars {
-    max-width: 1560px;
+  #about .pillars,
+  #films .section-head,
+  #films .films,
+  #team .section-head,
+  #team .team-grid {
+    max-width: 1800px;
     margin-left: auto;
     margin-right: auto;
   }
@@ -896,7 +902,7 @@
     grid-template-columns: minmax(400px, 580px) minmax(0, 940px);
     gap: 80px;
     align-items: start;
-    max-width: 1620px;
+    max-width: 1800px;
     margin-inline: auto;
     justify-content: center;
   }
@@ -1610,10 +1616,36 @@
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 560px);
     column-gap: clamp(44px, 5vw, 90px);
+    row-gap: clamp(32px, 4vw, 56px);
     align-items: start;
     max-width: none;
     margin: 0;
     text-align: left;
+  }
+
+  /* Key-art poster at the top of a film entry — natural aspect, no letterbox */
+  .film-poster-wide {
+    grid-column: 1 / -1;
+    margin: 0 0 16px;
+    padding: 0;
+    display: block;
+    overflow: hidden;
+    border: 1px solid var(--line-strong);
+    box-shadow: 0 32px 60px -28px rgba(23, 16, 9, 0.35);
+    background: transparent;
+    /* Center the poster inside the wider row with a comfortable width */
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 24px;
+  }
+  .film-poster-wide img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  @media (max-width: 900px) {
+    .film-poster-wide { max-width: 100%; margin: 0 0 20px; }
   }
 
   .film-meta { text-align: left; }
@@ -2108,7 +2140,10 @@
   </div>
 
   <div class="films">
-    <article class="film reveal">
+    <article class="film reveal film--conspiracy">
+      <figure class="film-poster-wide">
+        <img src="conspiracy-poster.jpg" alt="Conspiracy Theory — poster. Dylan McTee, Olivia Rose Keegan, Daniel Williams-Lopez, Charlotte McKinney, and Dylan Arnold at a candlelit dinner. Coincidence breeds paranoia." loading="lazy">
+      </figure>
       <figure class="film-figure">
         <div class="bts-image-wrap">
           <img class="bts-image" src="conspiracy-still.jpg" alt="A tense candlelit dinner scene from Conspiracy Theory" loading="lazy">
