@@ -1,2 +1,2 @@
+# security: hide non-web files (served otherwise, since publish dir = repo root)
 /CLAUDE.md  /404.html  404!
-/CLAUDE.md  /404.html  404!   # security: hide non-web file
